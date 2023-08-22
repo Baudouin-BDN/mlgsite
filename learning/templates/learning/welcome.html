@@ -1,0 +1,72 @@
+{% extends 'base_template.html'%}
+
+{% block title %} Bienvenue {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- javaScript -->
+    <script>
+
+
+        // Affichage puis disparition de message de connexion
+        //--------------------------------------------------
+
+        let counter = 0;
+
+        function count() {
+            counter++;
+            if (counter < 2) {
+                document.querySelector("#login-msg").style.display = "block";
+            } else {
+                document.querySelector("#login-msg").style.display = "none";
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setInterval(count, 1000);
+        })
+
+
+    </script>
+    <!-- end javaScript -->
+
+
+   <div style="height:20px;">
+    <h4>
+        <span id="login-msg" class="login-msg text-success">Vous êtes connecté(e)...</span>
+    </h4>
+   </div>
+   <br>
+    <div class="welcome">
+
+        <span class="text-primary">Vous pouvez maintenant commenter nos articles ou simplement nous laisser un commentaire</span>
+
+
+
+        <p>
+            <b><a href="{% url 'articles' %}">Voir nos Articles</a></b> &nbsp;| &nbsp;<b><a href="{% url 'cours' %}">Nos Cours / Courses</a></b>
+        </p>
+
+        <br>
+
+    </div>
+
+
+
+    <!-- javaScript end -->
+    <div>
+
+
+
+    </div>
+
+
+</div>
+
+
+    {% endblock %}
+
+    {% block aside %} {% endblock %}

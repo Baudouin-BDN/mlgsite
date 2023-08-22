@@ -1,0 +1,69 @@
+{% extends 'base_template.html'%}
+
+{% block title %} Contact {% endblock %}
+{% block content %}
+
+<div class="container">
+    <span style="text-success">{{msg_sent}}</span>
+    <h1>
+        Contactez-nous
+    </h1>
+
+    <div class="contact-form-fieldset w-100">
+
+        <form method="POST" class="contact-form">
+
+            {% csrf_token %}
+            <div class="contact-div w-100">
+
+                <div>
+                    Sujet
+                </div>
+
+                <div>
+                    {{form.subject}}
+                </div>
+                <br>
+
+                <div>
+                    Message:
+                </div>
+                <div>
+                    {{form.message}}
+                </div>
+                <br>
+
+                <div>
+                   Votre adresse email:
+                </div>
+
+                <div>
+                    {{form.sender}}
+                </div>
+                <br>
+
+                <div>
+                    Cochez si vous voulez avoir une copie: {{form.cc_myself}}
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary send-btn">Envoyer</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <br>
+
+
+
+    Tél: +243895747312 <br><br>
+
+    <a href=" https://www.facebook.com/MLG-Learning-English-106973327498292/?" target="_blank"><img src="/media/images/fcbk.JPG" width="35" height="35" /></a>
+
+    <a href="http://www.whatsapp.com"><img src="/media/images/whatsapplg.JPG" width="35" height="35" /></a>
+
+</div>
+
+{% endblock %}

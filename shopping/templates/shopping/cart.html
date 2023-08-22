@@ -1,0 +1,37 @@
+{% extends 'base_template.html'%}
+{% load learning_tags %}
+
+{% block title %} Le panier {% endblock %}
+
+{% block content %}
+<section class="container cart">
+<div>
+<h2>
+    Votre panier
+</h2>
+<table class="table table-striped">
+    <thead>
+        <th>Document</th><th>Format</th><th>Coût</th>
+    </thead>
+    {% for order in orders %}
+
+    <tr class="doc-tr"><td>{{ order.document.title}}</td> <td>{{order.document.doc_format }}</td><td>{{order.unit_price}} $</td></tr><br>
+
+    {% endfor %}
+</table>
+
+<div class="text-success border">
+    Coût total: {{total_cost}} $
+</div>
+    <br>
+     <button class="btn btn-primary p-4">
+         Passer à l'achat
+    </button>
+<br>
+<br>
+<button class="border border-1 btn-danger"><a href="{% url 'delete-cart' %}">Supprimer le panier</a></button>
+<hr>
+</div>
+</section>
+
+{% endblock %}

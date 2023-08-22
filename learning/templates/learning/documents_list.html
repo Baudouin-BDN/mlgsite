@@ -1,0 +1,54 @@
+{% extends 'base_template.html'%}
+{% load learning_tags %}
+
+{% block title %} Liste des documents{% endblock %}
+{% block content %}
+
+<section class="container col-sm-12">
+<h1>
+    Liste des documents
+</h1>
+
+<table class="table table-striped">
+    <thead>
+       <tr><th>Titre</th><th>Format</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for document in page %}
+    <tr>
+        <td><a href="{% url 'doc-details' document.slug %}">{{document.title}}</a></td>
+        <td>{{ document.doc_format}}</td>
+        <td>
+
+                <a href="{% url 'doc-details' document.slug %}">
+                   <button class="btn btn-success">
+                       Download
+                   </button>
+                </a>
+
+        </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<div class="pagination">
+
+    <div class="pagin-cover">
+        {% if page.has_previous %}
+        <div>
+            <button class="btn btn-secondary"><a href="{% url 'documents-list' %}?page={{ page.previous_page_number }}">Précédent</a></button>
+        </div>
+        {% endif %}
+
+        {% if page.has_next %}
+        <div>
+            <button class="btn btn-secondary"><a href="{% url 'documents-list' %}?page={{ page.next_page_number }}">Suivant</a></button>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+</section>
+{% endblock %}

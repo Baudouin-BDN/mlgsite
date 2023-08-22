@@ -1,0 +1,40 @@
+{% extends 'base_template.html'%}
+
+{% block title %} Accueil {% endblock %}
+
+{% block content %}
+<section class="container">
+    {% if user.is_authenticated and user.is_superuser %}
+    <h4>
+        <a href="{% url 'create-article' %}">Créer un article</a>
+    </h4>
+    {% endif %}
+
+    {% if articles %}
+    <div class="articles p-4 row">
+        {% for article in articles %}
+        {% autoescape off %}
+        <div class="article w-100 p-2">
+            <a href="{% url 'article-details' article.slug %}">
+                <div class="image">
+                    <img src="{{article.photo.url }}" alt="photo" />
+                </div>
+                <span class="categorie">{{article.categorie}}</span><br>
+                <b>{{article.title}}</b><br>
+                {{ article.excerpt|truncatewords:15 }}
+            </a>
+        </div>
+        {% endautoescape %}
+        {% endfor %}
+    </div>
+
+    {% endif %}
+
+</section>
+{% endblock %}
+
+{% block aside %}
+
+<aside class="aside"> À voir aussi... </aside>
+
+{% endblock %}
